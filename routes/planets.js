@@ -8,12 +8,7 @@ router.get("/", verifyToken, planetsController.getPlanets);
 router.get("/:name", verifyToken, planetsController.getPlanetsByName);
 router.get("/:terrain", verifyToken, planetsController.getPlanetsByTerrain);
 
-router.post(
-  "/registerPlanet",
-  verifyToken,
-  isAdm,
-  planetsController.registerPlanet
-);
+router.post("/registerPlanet", verifyToken, isAdm, planetsController.registerPlanet);
 
 router.put("/:id", verifyToken, isAdm, planetsController.updatePlanet);
 
