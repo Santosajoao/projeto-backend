@@ -1,17 +1,17 @@
 const express = require("express");
 
-const { verifyToken, isAdm } = require("../middlewares/auth.js");
+const { verifyToken, typeOfUser } = require("../middleware/auth.js");
 const router = express.Router();
 const planetsController = require("../controllers/planets.js");
 
 router.get("/", verifyToken, planetsController.getPlanets);
-router.get("/:name", verifyToken, planetsController.getPlanetsByName);
-router.get("/:terrain", verifyToken, planetsController.getPlanetsByTerrain);
+router.get("/:name", verifyToken, planetsController.getPlanetByName);
+router.get("/terrain/:terrain", verifyToken, planetsController.getPlanetsByTerrain);
 
-router.post("/registerPlanet", verifyToken, isAdm, planetsController.registerPlanet);
+router.post("/registerPlanet", verifyToken, typeOfUser, planetsController.registerPlanet);
 
-router.put("/:id", verifyToken, isAdm, planetsController.updatePlanet);
+router.put("/:id", verifyToken, typeOfUser, planetsController.updatePlanet);
 
-router.delete("/:id", verifyToken, isAdm, planetsController.deletePlanet);
+router.delete("/:id", verifyToken, typeOfUser, planetsController.deletePlanet);
 
 module.exports = router;
