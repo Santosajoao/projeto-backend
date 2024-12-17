@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "swagger-autogen": "node index.js",
+    "swagger-autogen": "node swagger.js",
     "start": "nodemon index.js"
   },
   "author": "",
