@@ -1,22 +1,17 @@
 const express = require("express");
 
-const { verifyToken, isAdm } = require("../middlewares/auth.js");
+const { verifyToken, typeOfUser } = require("../middleware/auth.js");
 const router = express.Router();
 const charactersController = require("../controllers/characters.js");
 
-router.get("/", verifyToken, charactersController.getCities);
-router.get("/:name", verifyToken, charactersController.getcharactersByName);
-router.get("/:gender", verifyToken, charactersController.getcharactersByGender);
+router.get("/", verifyToken, charactersController.getCharacters);
+router.get("/:name", verifyToken, charactersController.getCharacterByName);
+router.get("/gender/:gender", verifyToken, charactersController.getCharactersByGender);
 
-router.post(
-  "/registerCharacter",
-  verifyToken,
-  isAdm,
-  charactersController.registerCharacter
-);
+router.post("/registerCharacter", verifyToken, typeOfUser, charactersController.registerCharacter);
 
-router.put("/:id", verifyToken, isAdm, charactersController.updateCharacter);
+router.put("/:id", verifyToken, typeOfUser, charactersController.updateCharacter);
 
-router.delete("/:id", verifyToken, isAdm, charactersController.deleteCharacter);
+router.delete("/:id", verifyToken, typeOfUser, charactersController.deleteCharacter);
 
 module.exports = router;
