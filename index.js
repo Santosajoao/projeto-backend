@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const { urlNotValid } = require("./middlewares/auth.js");
+const { urlNotValid } = require("./middleware/auth.js");
 const characters = require("./routes/characters");
 const users = require("./routes/users.js");
 const planets = require("./routes/planets");
@@ -19,4 +19,4 @@ app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
 app.use(urlNotValid);
 
-app.listen(3000, () => console.log("Servidor rodando na porta 3000"));
+app.listen(3000, () => console.log("Servidor rodando: http://localhost:3000"));
